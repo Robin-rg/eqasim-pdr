@@ -11,7 +11,7 @@ departement and région.
 def configure(context):
     context.config("data_path")
 
-    context.config("regions", [11])
+    context.config("regions", []) # PDR : [11] supprimé
     context.config("departments", [])
     context.config("codes_path", "codes_2024/reference_IRIS_geo2024.zip")
     context.config("codes_xlsx", "reference_IRIS_geo2024.xlsx")
