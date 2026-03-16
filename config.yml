@@ -12,14 +12,38 @@ run:
 # Here the configuraiton of the pipeline starts
 config:
   # Some general configuration
-  processes: 4
+  processes: 8
 
   # Define whether to use ENTD or EGT as the household travel survey (HTS)
-  hts: entd
+  hts: entd # mobisurvstd ?
+
+  # If using MobiSurvStd, specify the path to the survey zipfile or directory
+  ## path to the zipfile / directory where the HTS to be read by MobiSurvStd is located
+  ## path is relative to `data_path`
+  # mobisurvstd:
+  #   path: my_survey.zip
 
   # Define sampling rate and random seed for the output population
-  sampling_rate: 0.001
+  sampling_rate: 0.01 # PDR 1%
   random_seed: 1234
+
+  ##################
+  # Zone selection #
+  ##################
+
+  ## select regions by region_id
+  # regions: []
+
+  ## select departments by department_id
+  departments: [59]
+
+  # Paths
+  gtfs_path: gtfs_douai
+  osm_path: osm_douai
+  ban_path: ban_douai
+  bdtopo_path: bdtopo_douai
+
+
 
   data_path: ../data
   output_path: ../output
@@ -35,3 +59,19 @@ config:
 
   # Uncomment to use the bhepop2 package for attributing income
   # income_assignation_method: bhepop2
+
+
+  ## Cutter settings: Used to define a specific area for analysis or simulation
+  # cutter:
+
+    ## Path to the directory containing the cutter geojson file
+    # path: cutter
+
+    ## Name of the cutter file (e.g., GeoJSON file defining the area)
+    # file: cutter.geojson
+
+    ## Name of the cutter (used for output file naming)
+    # name: paris
+
+    ## Whether to apply the cutter after the full simulation (True/False)
+    # after_full_simulation: True
